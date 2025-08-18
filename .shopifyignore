@@ -1,0 +1,112 @@
+# .shopifyignore
+# Файлы и папки, которые НЕ нужно загружать в Shopify
+
+# Исходный код и разработка
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+
+# Version control
+.git/*
+.gitignore
+.gitattributes
+.gitmodules
+
+# Node.js и пакетные менеджеры
+node_modules/*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package.json
+package-lock.json
+yarn.lock
+.npmrc
+.yarnrc
+
+# Shopify CLI и конфигурация
+.shopify/*
+shopify.theme.toml
+.shopify-cli.yml
+
+# Переменные окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE и редакторы
+.vscode/*
+.idea/*
+*.swp
+*.swo
+.sublime-project
+.sublime-workspace
+*~
+
+# Операционные системы
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build инструменты и конфигурация
+webpack.config.js
+gulpfile.js
+Gruntfile.js
+rollup.config.js
+.babelrc
+.eslintrc*
+.prettierrc*
+postcss.config.js
+tailwind.config.js
+
+# Sass и CSS
+.sass-cache/*
+*.css.map
+*.sass.map
+*.scss.map
+
+# Документация и README файлы
+README.md
+CHANGELOG.md
+LICENSE
+LICENSE.txt
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+.github/*
+
+# Тесты
+test/*
+tests/*
+spec/*
+__tests__/*
+*.test.js
+*.spec.js
+coverage/*
+
+# Исходники (если используете препроцессоры)
+src/*
+source/*
+
+# Build папки
+dist/*
+build/*
+.cache/*
+.temp/*
+
+# Конфигурационные файлы для разработки
+.editorconfig
+.gitkeep
+.htaccess
+
+# Специфичные для проекта папки
+docs/*
+examples/*
+demo/*
