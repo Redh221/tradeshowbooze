@@ -1,5 +1,3 @@
-
-
 {% if section.blocks.size > 1 %}
   <script
     src="{{ 'announcement-bar.js' | asset_url }}"
@@ -10,7 +8,7 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <aside
-  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} {{ section.settings.customAnouncmentHeader }}"
   style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
 >
   {% liquid
@@ -67,7 +65,9 @@
   }
 
   .announcement-bar__slide {
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    transition:
+      opacity 0.5s ease-in-out,
+      visibility 0.5s ease-in-out;
 
     &[aria-hidden='true'] {
       opacity: 0;
@@ -143,6 +143,12 @@
       "default": 5,
       "unit": "sec"
     },
+    {
+      "type": "text",
+      "id": "customAnouncmentHeader",
+      "label": "setCustomCSSClass"
+    },
+
     {
       "type": "header",
       "content": "t:content.appearance"

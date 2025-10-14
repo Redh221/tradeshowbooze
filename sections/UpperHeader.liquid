@@ -1,0 +1,66 @@
+{{ 'reset.css' | asset_url | stylesheet_tag }}
+{{ 'UpperHeader.css' | asset_url | stylesheet_tag }}
+<header>
+  <div>
+    <div class="header_top">
+      <div class="backgroundtest"></div>
+      <div class="header_top_content container">
+        <div class="header_top_left">
+          <a href="/">
+            <img
+              src="{{ 'Logo_Black.svg' | asset_url }}"
+              alt="Logo_Black"
+              width="106"
+              height="30"
+              style="width:106px !important; height:30px !important; padding: 0 3.75px;"
+          ></a>
+        </div>
+        <div class="header_top_mid">
+          <div>
+            <img
+              src="{{'Shipping-Icon.svg' | asset_url}}"
+              width="30"
+              height="25"
+              style="width:30px; height:25px; padding: 0 3.75px;"
+            >
+            FREE SHIPPING&nbsp;
+            <p>OVER $1000</p>
+          </div>
+          {% comment %} <div>price match</div> {% endcomment %}
+        </div>
+        <div class="header_top_right">
+          <div class="menu_element">
+            <ion-icon name="call-outline" class="header-icon"></ion-icon>
+            <p>{{ section.settings.phone }}</p>
+          </div>
+          <div class="menu_element">
+            <ion-icon name="person-outline" class="header-icon"></ion-icon>
+            <p>My Account</p>
+          </div>
+          <div class="menu_element menu_element_points">
+            <img
+              src="{{ 'Tier-member.webp' | asset_url }}"
+              alt="Logo_Star"
+              width="35"
+              height="auto"
+
+              style="width:35px !important; height: auto !important; padding: 0 3.75px; margin-right: 6px;"
+            >
+            <p>0 points</p>
+          </div>
+          <div class="menu_element menu_element_upload">
+            <ion-icon name="cloud-upload-outline" class="header-icon"></ion-icon>
+            <p>Upload Files</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "UpperHeader",
+  "settings": [{ "type": "text", "id": "phone", "label": "Phone number", "default": "888.977.1223" }]
+}
+{% endschema %}
