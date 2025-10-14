@@ -1,0 +1,22 @@
+<div class="section-{{ section.id }}">
+  {{ section.settings.title }}
+</div>
+
+{% schema %}
+{
+  "name": "BotHeader",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BotHeader",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}
