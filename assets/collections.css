@@ -1,0 +1,67 @@
+/* Контейнер и текст */
+.cases-intro {
+  /* аналог px-xl-5 на широких */
+  padding-inline: 0;
+}
+.cases-text {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+/* Список бейджей: вместо .row / .col-* используем grid */
+.badges {
+  list-style: none;
+  margin: 0; /* вместо m-0 */
+  padding: 0; /* вместо p-0 */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem; /* вместо mb-2 / межэлементные отступы */
+  margin-inline: -0.5rem; /* вместо mx-n2 */
+}
+
+@media (min-width: 768px) {
+  /* ~ md */
+  .badges {
+    grid-template-columns: repeat(3, 1fr); /* col-12 col-md-4 */
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* ~ xl для px-xl-5 */
+  .cases-intro {
+    padding-inline: 3rem;
+  }
+}
+
+/* Элемент бейджа: вместо d-flex, align-items-center, justify-content-* и px-2 */
+.badge-item {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* justify-content-center на мобильных */
+  padding-inline: 0.5rem; /* px-2 */
+}
+
+@media (min-width: 992px) {
+  /* ~ lg: justify-content-lg-start */
+  .badge-item {
+    justify-content: flex-start;
+  }
+}
+
+/* Иконка и подпись: вместо .h6, .pl-2, text-* и прочего */
+.badge-icon {
+  display: block;
+  width: 30px;
+  height: 25px;
+  flex: 0 0 auto;
+}
+
+.badge-text {
+  margin: 0 0 0 0.5rem; /* pl-2 */
+  font-size: 1rem; /* ~ h6 */
+  font-weight: 500; /* font-weight-medium */
+  text-transform: capitalize; /* text-capitalize */
+  word-break: break-word; /* break-word */
+  text-align: left; /* text-left */
+}
