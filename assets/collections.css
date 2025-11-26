@@ -52,8 +52,8 @@
 /* Иконка и подпись: вместо .h6, .pl-2, text-* и прочего */
 .badge-icon {
   display: block;
-  width: 30px;
-  height: 25px;
+  width: 50px;
+  height: 33px;
   flex: 0 0 auto;
 }
 
