@@ -110,7 +110,27 @@
             -%}
           {%- endcapture -%}
 
-          {% render 'link-featured-image', link: link, class: 'mega-menu__link-image', sizes: collection_image_sizes %}
+          {% assign collection = link.object %}
+          {% assign default_image = collection.featured_image | image_url: width: 600 %}
+          {% assign hover_image = collection.metafields.custom.collection_gifs | image_url: width: 600 %}
+
+          <div
+            class="mega-menu__image-wrapper"
+            data-default="{{ default_image }}"
+            {% if collection.metafields.custom.collection_gifs != blank %}
+              data-hover="{{ hover_image }}"
+            {% endif %}
+          >
+            <img
+              src="{{ default_image }}"
+              alt="{{ link.title | escape }}"
+              class="mega-menu__link-image"
+              width="{{ collection.featured_image.width }}"
+              height="{{ collection.featured_image.height }}"
+              loading="lazy"
+              sizes="{{ collection_image_sizes | strip }}"
+            >
+          </div>
         {% endif %}
         <span
           class="mega-menu__link-title"
@@ -320,3 +340,22 @@
       </ul>
     </span>
 {% endcase %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.mega-menu__image-wrapper').forEach((box) => {
+      const img = box.querySelector('img');
+      const normal = box.dataset.default;
+      const hover = box.dataset.hover;
+
+      if (!hover) return; // если нет secondImage — ничего не делаем
+
+      box.addEventListener('mouseenter', () => {
+        img.src = hover;
+      });
+
+      box.addEventListener('mouseleave', () => {
+        img.src = normal;
+      });
+    });
+  });
+</script>
