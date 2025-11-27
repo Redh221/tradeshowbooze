@@ -16,7 +16,7 @@
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/Collection-Podium_600x_148e17ac-46c8-4dd6-aa98-76506cf688e4.webp",
+            "image": "{{ closest.collection.metafields.custom.collection_secondimage.value }}",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -128,16 +128,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_fkfFeh",
-            "text_gPi77T"
-          ]
+          "block_order": ["text_fkfFeh", "text_gPi77T"]
         }
       },
-      "block_order": [
-        "image_H4jkTH",
-        "group_9yg48g"
-      ],
+      "block_order": ["image_H4jkTH", "group_9yg48g"],
       "custom_css": [],
       "name": "Collection heading",
       "settings": {
@@ -297,8 +291,5 @@
       }
     }
   },
-  "order": [
-    "section",
-    "main"
-  ]
+  "order": ["section", "main"]
 }
