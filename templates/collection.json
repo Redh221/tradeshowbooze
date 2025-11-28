@@ -128,10 +128,16 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_fkfFeh", "text_gPi77T"]
+          "block_order": [
+            "text_fkfFeh",
+            "text_gPi77T"
+          ]
         }
       },
-      "block_order": ["image_H4jkTH", "group_9yg48g"],
+      "block_order": [
+        "image_H4jkTH",
+        "group_9yg48g"
+      ],
       "custom_css": [],
       "name": "Collection heading",
       "settings": {
@@ -291,5 +297,8 @@
       }
     }
   },
-  "order": ["section", "main"]
+  "order": [
+    "section",
+    "main"
+  ]
 }

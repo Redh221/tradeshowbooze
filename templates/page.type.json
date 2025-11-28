@@ -58,30 +58,18 @@
     },
     "carousel_custom_Q4w4fT": {
       "type": "carousel-custom",
-      "blocks": {
-        "slide_t4VpVz": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Upgrade_button__34768.1530069894.1280.1280_3aad86e9-12fd-453b-9104-e3a853a8c2a0.jpg",
-            "alt": "ууу",
-            "title": "уууу"
-          }
-        },
-        "slide_Gd6qUj": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Collection-Pop-Up_600x_4b47e8bd-2e7f-4ad4-abf0-473a946a3806.webp",
-            "alt": "ыфв",
-            "title": "ыййй"
-          }
-        }
-      },
-      "block_order": [
-        "slide_t4VpVz",
-        "slide_Gd6qUj"
-      ],
       "name": "Custom carousel",
-      "settings": {}
+      "settings": {
+        "title": "Carousel",
+        "collection": "20x20-island",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
