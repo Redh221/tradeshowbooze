@@ -1,0 +1,68 @@
+{{ 'glider.min.css' | asset_url | stylesheet_tag }}
+
+<h2>Carousel</h2>
+
+<div class="page-width" id="{{ section.id }}">
+  <div class="glider">
+    {% if section.settings.collection != blank %}
+      {% for product in section.settings.collection.products limit: section.settings.products_limit %}
+        {% render 'resource-card',
+          resource: product,
+          resource_type: 'product',
+          image_hover: true,
+          image_aspect_ratio: 'adapt'
+        %}
+      {% endfor %}
+    {% else %}
+      <p>Выбери коллекцию в настройках секции.</p>
+    {% endif %}
+  </div>
+
+  <button class="prev">Prev</button>
+  <button class="next">Next</button>
+</div>
+
+<script src="{{ 'glider.min.js' | asset_url }}" async></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    new Glider(document.querySelector('#{{ section.id }} .glider'), {
+      slidesToShow: {{ section.settings.number_slider_desktop }},
+      arrows: {
+        prev: '#{{ section.id }} .prev',
+        next: '#{{ section.id }} .next',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Carousel",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "number",
+      "id": "products_limit",
+      "label": "Max products from collection",
+      "default": 10
+    },
+    {
+      "type": "number",
+      "id": "number_slider_desktop",
+      "label": "Number of slides (desktop)",
+      "default": 3
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Carousel"
+    }
+  ]
+}
+{% endschema %}
