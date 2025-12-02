@@ -132,9 +132,7 @@
             >
           </div>
         {% endif %}
-        <span
-          class="mega-menu__link-title"
-        >
+        <span class="mega-menu__link-title">
           {{- link.title -}}
         </span>
       </a>
@@ -184,6 +182,20 @@
     %}
   {% endfor %}
 </ul>
+
+{%- liquid
+  assign show_all_url = section.settings.mega_menu_show_all_link | default: parent_link.url
+-%}
+{% if show_all_url != blank %}
+  <div class="mega-menu__show-all-wrapper">
+    <a
+      href="{{ show_all_url }}"
+      class="mega-menu__show-all-button mb-2 font-weight-normal text-primary letter-spacing"
+    >
+      Show all types
+    </a>
+  </div>
+{% endif %}
 
 {% liquid
   # decide how many grid columns are needed for the menu list, and how many columns are needed for the featured content
@@ -340,6 +352,7 @@
       </ul>
     </span>
 {% endcase %}
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.mega-menu__image-wrapper').forEach((box) => {
@@ -347,7 +360,7 @@
       const normal = box.dataset.default;
       const hover = box.dataset.hover;
 
-      if (!hover) return; // если нет secondImage — ничего не делаем
+      if (!hover) return;
 
       box.addEventListener('mouseenter', () => {
         img.src = hover;
