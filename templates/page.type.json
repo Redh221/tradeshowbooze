@@ -25,15 +25,15 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 2,
+            "gap": 8,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
             "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-43ea752d-1acf-42ef-b8ad-e55107750e43",
             "background_media": "none",
             "video_position": "cover",
             "background_image_position": "cover",
@@ -147,8 +147,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
+                "gap": 0,
+                "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
@@ -214,31 +214,76 @@
             "group_MMgpE9"
           ]
         },
-        "heading": {
-          "type": "text",
-          "name": "Title",
+        "group_mHhm9Y": {
+          "type": "group",
+          "name": "t:names.group",
           "settings": {
-            "text": "<h1>H12</h1><h1></h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "placeholder": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "text_N84tqJ": {
+              "type": "text",
+              "name": "Title",
+              "settings": {
+                "text": "<h1>Display {{ closest.page.title }}</h1>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h2",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_N84tqJ"
+          ]
         },
         "page-content": {
           "type": "page-content",
@@ -248,15 +293,18 @@
       },
       "block_order": [
         "group_hiN69Q",
-        "heading",
+        "group_mHhm9Y",
         "page-content"
+      ],
+      "custom_css": [
+        ".text-block--AUzc3NDJOcGVVajdBW__text_zBxPA3 {padding: 0;}"
       ],
       "settings": {
         "content_direction": "column",
         "gap": 32,
-        "color_scheme": "",
+        "color_scheme": "scheme-3923a4c9-17a2-46d0-ad7f-a3c9198050b9",
         "padding-block-start": 40,
-        "padding-block-end": 80
+        "padding-block-end": 20
       }
     },
     "carousel_custom_Q4w4fT": {
@@ -264,7 +312,97 @@
       "name": "Custom carousel",
       "settings": {
         "title": "Carousel",
-        "collection": "20x20-island",
+        "collection": "pop-up-displays",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "carousel_custom_hVAczP": {
+      "type": "carousel-custom",
+      "name": "Custom carousel",
+      "settings": {
+        "title": "Carousel",
+        "collection": "zip-up-displays",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "carousel_custom_4KNYe3": {
+      "type": "carousel-custom",
+      "name": "Custom carousel",
+      "settings": {
+        "title": "Carousel",
+        "collection": "led-lightbox-displays",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "carousel_custom_PFHF3x": {
+      "type": "carousel-custom",
+      "name": "Custom carousel",
+      "settings": {
+        "title": "Carousel",
+        "collection": "heavy-duty-portable-displays",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "carousel_custom_7kQPcw": {
+      "type": "carousel-custom",
+      "name": "Custom carousel",
+      "settings": {
+        "title": "Carousel",
+        "collection": "multi-panel-modular-displays",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "carousel_custom_wTKTRV": {
+      "type": "carousel-custom",
+      "name": "Custom carousel",
+      "settings": {
+        "title": "Carousel",
+        "collection": "multi-media-displays",
+        "products_limit": 10,
+        "number_slider_desktop": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "gap": 64,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "carousel_custom_fzzi97": {
+      "type": "carousel-custom",
+      "name": "Custom carousel",
+      "settings": {
+        "title": "Carousel",
+        "collection": "merchandising-shelving-solutions",
         "products_limit": 10,
         "number_slider_desktop": 3,
         "section_width": "page-width",
@@ -277,6 +415,12 @@
   },
   "order": [
     "main",
-    "carousel_custom_Q4w4fT"
+    "carousel_custom_Q4w4fT",
+    "carousel_custom_hVAczP",
+    "carousel_custom_4KNYe3",
+    "carousel_custom_PFHF3x",
+    "carousel_custom_7kQPcw",
+    "carousel_custom_wTKTRV",
+    "carousel_custom_fzzi97"
   ]
 }

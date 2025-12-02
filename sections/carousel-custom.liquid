@@ -15,9 +15,20 @@
   "
 >
   <div class="section-carousel__header">
-    <h2>{{ section.settings.collection.title }}</h2>
+    <h2>
+      {% if section.settings.collection.metafields.custom.display_title %}
+        {{ section.settings.collection.metafields.custom.display_title }}
+      {% else %}
+        {{ section.settings.collection.title }}
+      {% endif %}
+    </h2>
     <a href="{{ section.settings.collection.url }}" class="shop-all-link">
-      Shop All {{ section.settings.collection.title }}
+      Shop All
+      {% if section.settings.collection.metafields.custom.display_title %}
+        {{ section.settings.collection.metafields.custom.display_title }}
+      {% else %}
+        {{ section.settings.collection.title }}
+      {% endif %}
     </a>
   </div>
 
