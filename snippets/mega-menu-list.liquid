@@ -50,15 +50,6 @@
   assign max_menu_columns = grid_columns_count | default: 6
   assign max_menu_columns_tablet = grid_columns_count_tablet | default: 4
 
-  # Флаг: это именно пункт меню "Booths"?
-  assign is_booths_menu = false
-  if parent_link.title != blank
-    assign parent_handle = parent_link.title | handleize
-    if parent_handle == 'booths'
-      assign is_booths_menu = true
-    endif
-  endif
-
   if menu_content_type == 'collection_images'
     assign collection_links = parent_link.links | where: 'type', 'collection_link'
     assign catalog_links = parent_link.links | where: 'type', 'catalog_link'
@@ -130,34 +121,9 @@
                 <li class="mega-menu__item">
                   <a href="{{ link.url }}" class="mega-menu__link">
                     {%- comment -%}
-                      Показываем картинки:
-                      - если menu_content_type == 'collection_images'
-                      - ИЛИ если это мегаменю Booths (is_booths_menu = true)
+                      Для grouped меню всегда показываем картинки коллекций, если они есть
                     {%- endcomment -%}
-                    {% if menu_content_type == 'collection_images' or is_booths_menu %}
-                      {% assign collection = link.object %}
-                      {% if collection != blank and collection.featured_image != blank %}
-                        {% assign default_image = collection.featured_image | image_url: width: 600 %}
-                        {% assign hover_image = collection.metafields.custom.collection_gifs | image_url: width: 600 %}
-
-                        <div
-                          class="mega-menu__image-wrapper"
-                          data-default="{{ default_image }}"
-                          {% if collection.metafields.custom.collection_gifs != blank %}
-                            data-hover="{{ hover_image }}"
-                          {% endif %}
-                        >
-                          <img
-                            src="{{ default_image }}"
-                            alt="{{ link.title | escape }}"
-                            class="mega-menu__link-image"
-                            width="{{ collection.featured_image.width }}"
-                            height="{{ collection.featured_image.height }}"
-                            loading="lazy"
-                          >
-                        </div>
-                      {% endif %}
-                    {% endif %}
+                    {% render 'mega-menu-collection-image', link: link %}
                     <span class="mega-menu__link-title">{{ link.title }}</span>
                   </a>
                 </li>
@@ -234,27 +200,7 @@
               -%}
             {%- endcapture -%}
 
-            {% assign collection = link.object %}
-            {% assign default_image = collection.featured_image | image_url: width: 600 %}
-            {% assign hover_image = collection.metafields.custom.collection_gifs | image_url: width: 600 %}
-
-            <div
-              class="mega-menu__image-wrapper"
-              data-default="{{ default_image }}"
-              {% if collection.metafields.custom.collection_gifs != blank %}
-                data-hover="{{ hover_image }}"
-              {% endif %}
-            >
-              <img
-                src="{{ default_image }}"
-                alt="{{ link.title | escape }}"
-                class="mega-menu__link-image"
-                width="{{ collection.featured_image.width }}"
-                height="{{ collection.featured_image.height }}"
-                loading="lazy"
-                sizes="{{ collection_image_sizes | strip }}"
-              >
-            </div>
+            {% render 'mega-menu-collection-image', link: link, sizes: collection_image_sizes %}
           {% endif %}
           <span class="mega-menu__link-title">
             {{- link.title -}}
@@ -479,7 +425,6 @@
 {% endif %}
 
 <style>
-  /* Tabs layout styles (for 3-level menus) */
   .mega-menu__container--with-tabs {
     display: flex;
     gap: 0;

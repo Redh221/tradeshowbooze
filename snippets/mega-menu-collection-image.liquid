@@ -1,0 +1,32 @@
+{%- comment -%}
+  Renders a collection image with hover effect for mega menu
+
+  @param {object} link - Link object containing collection
+  @param {string} [sizes] - Optional sizes attribute for responsive images
+{%- endcomment -%}
+
+{% assign collection = link.object %}
+{% if collection != blank and collection.featured_image != blank %}
+  {% assign default_image = collection.featured_image | image_url: width: 600 %}
+  {% assign hover_image = collection.metafields.custom.collection_gifs | image_url: width: 600 %}
+
+  <div
+    class="mega-menu__image-wrapper"
+    data-default="{{ default_image }}"
+    {% if collection.metafields.custom.collection_gifs != blank %}
+      data-hover="{{ hover_image }}"
+    {% endif %}
+  >
+    <img
+      src="{{ default_image }}"
+      alt="{{ link.title | escape }}"
+      class="mega-menu__link-image"
+      width="{{ collection.featured_image.width }}"
+      height="{{ collection.featured_image.height }}"
+      loading="lazy"
+      {% if sizes != blank %}
+        sizes="{{ sizes | strip }}"
+      {% endif %}
+    >
+  </div>
+{% endif %}
