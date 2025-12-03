@@ -50,6 +50,15 @@
   assign max_menu_columns = grid_columns_count | default: 6
   assign max_menu_columns_tablet = grid_columns_count_tablet | default: 4
 
+  # Флаг: это именно пункт меню "Booths"?
+  assign is_booths_menu = false
+  if parent_link.title != blank
+    assign parent_handle = parent_link.title | handleize
+    if parent_handle == 'booths'
+      assign is_booths_menu = true
+    endif
+  endif
+
   if menu_content_type == 'collection_images'
     assign collection_links = parent_link.links | where: 'type', 'collection_link'
     assign catalog_links = parent_link.links | where: 'type', 'catalog_link'
@@ -83,7 +92,7 @@
 %}
 
 {% if has_grouped_structure %}
-  {%- comment -%} GROUPED MENU: Show tabs layout (Type, Size, Space) {%- endcomment -%}
+  {%- comment -%} GROUPED MENU: Show tabs layout (Type, Size, Space, etc.) {%- endcomment -%}
   <div class="mega-menu__container mega-menu__container--with-tabs">
     {%- comment -%} Left sidebar with Type, Size, Space buttons {%- endcomment -%}
     <div class="mega-menu__shop-by">
@@ -120,27 +129,34 @@
               {% for link in parent_item.links %}
                 <li class="mega-menu__item">
                   <a href="{{ link.url }}" class="mega-menu__link">
-                    {% if menu_content_type == 'collection_images' %}
+                    {%- comment -%}
+                      Показываем картинки:
+                      - если menu_content_type == 'collection_images'
+                      - ИЛИ если это мегаменю Booths (is_booths_menu = true)
+                    {%- endcomment -%}
+                    {% if menu_content_type == 'collection_images' or is_booths_menu %}
                       {% assign collection = link.object %}
-                      {% assign default_image = collection.featured_image | image_url: width: 600 %}
-                      {% assign hover_image = collection.metafields.custom.collection_gifs | image_url: width: 600 %}
+                      {% if collection != blank and collection.featured_image != blank %}
+                        {% assign default_image = collection.featured_image | image_url: width: 600 %}
+                        {% assign hover_image = collection.metafields.custom.collection_gifs | image_url: width: 600 %}
 
-                      <div
-                        class="mega-menu__image-wrapper"
-                        data-default="{{ default_image }}"
-                        {% if collection.metafields.custom.collection_gifs != blank %}
-                          data-hover="{{ hover_image }}"
-                        {% endif %}
-                      >
-                        <img
-                          src="{{ default_image }}"
-                          alt="{{ link.title | escape }}"
-                          class="mega-menu__link-image"
-                          width="{{ collection.featured_image.width }}"
-                          height="{{ collection.featured_image.height }}"
-                          loading="lazy"
+                        <div
+                          class="mega-menu__image-wrapper"
+                          data-default="{{ default_image }}"
+                          {% if collection.metafields.custom.collection_gifs != blank %}
+                            data-hover="{{ hover_image }}"
+                          {% endif %}
                         >
-                      </div>
+                          <img
+                            src="{{ default_image }}"
+                            alt="{{ link.title | escape }}"
+                            class="mega-menu__link-image"
+                            width="{{ collection.featured_image.width }}"
+                            height="{{ collection.featured_image.height }}"
+                            loading="lazy"
+                          >
+                        </div>
+                      {% endif %}
                     {% endif %}
                     <span class="mega-menu__link-title">{{ link.title }}</span>
                   </a>
