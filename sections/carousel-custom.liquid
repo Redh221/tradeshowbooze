@@ -1,0 +1,213 @@
+{{ 'glider.min.css' | asset_url | stylesheet_tag }}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    spacing-style
+    gap-style
+  "
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    {% render 'gap-style', value: section.settings.gap %}
+  "
+>
+  <div class="section-carousel__header">
+    <h2>
+      {% if section.settings.collection.metafields.custom.display_title %}
+        {{ section.settings.collection.metafields.custom.display_title }}
+      {% else %}
+        {{ section.settings.collection.title }}
+      {% endif %}
+    </h2>
+    <a href="{{ section.settings.collection.url }}" class="shop-all-link">
+      Shop All
+      {% if section.settings.collection.metafields.custom.display_title %}
+        {{ section.settings.collection.metafields.custom.display_title }}
+      {% else %}
+        {{ section.settings.collection.title }}
+      {% endif %}
+    </a>
+  </div>
+
+  <!-- Внешний контейнер для стрелок -->
+  <div class="carousel-navigation-wrapper">
+    <div class="carousel-wrapper force-full-width" id="{{ section.id }}">
+      <div class="glider">
+        {% if section.settings.collection != blank %}
+          {% for product in section.settings.collection.products limit: section.settings.products_limit %}
+            {% render 'resource-card',
+              resource: product,
+              resource_type: 'product',
+              image_hover: true,
+              image_aspect_ratio: 'adapt'
+            %}
+          {% endfor %}
+        {% else %}
+          <p>Выбери коллекцию в настройках секции.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Стрелки вынесены из force-full-width -->
+    <button class="glider-prev" aria-label="Previous">‹</button>
+    <button class="glider-next" aria-label="Next">›</button>
+  </div>
+</div>
+
+<script src="{{ 'glider.min.js' | asset_url }}" async></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    new Glider(document.querySelector('#{{ section.id }} .glider'), {
+      slidesToShow: {{ section.settings.number_slider_desktop }},
+      slidesToScroll: 1,
+      draggable: true,
+      dragVelocity: 2,
+      scrollLock: true,
+      scrollLockDelay: 250,
+      arrows: {
+        prev: '.carousel-navigation-wrapper .glider-prev',
+        next: '.carousel-navigation-wrapper .glider-next',
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Carousel",
+  "class": "ui-test-carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Carousel"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "number",
+      "id": "products_limit",
+      "label": "Max products from collection",
+      "default": 10
+    },
+    {
+      "type": "number",
+      "id": "number_slider_desktop",
+      "label": "Number of slides (desktop)",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "t:global.section_width.header"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:global.section_width.label",
+      "options": [
+        {
+          "value": "page-width-narrow",
+          "label": "t:global.section_width.options.narrow"
+        },
+        {
+          "value": "page-width-content",
+          "label": "t:global.section_width.options.content"
+        },
+        {
+          "value": "page-width",
+          "label": "t:global.section_width.options.normal"
+        },
+        {
+          "value": "page-width-wide",
+          "label": "t:global.section_width.options.wide"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:global.color_scheme.header"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:global.color_scheme.label",
+      "options": [
+        {
+          "value": "scheme-1",
+          "label": "t:global.color_scheme.options.scheme_1"
+        },
+        {
+          "value": "scheme-2",
+          "label": "t:global.color_scheme.options.scheme_2"
+        },
+        {
+          "value": "scheme-3",
+          "label": "t:global.color_scheme.options.scheme_3"
+        },
+        {
+          "value": "scheme-4",
+          "label": "t:global.color_scheme.options.scheme_4"
+        },
+        {
+          "value": "scheme-5",
+          "label": "t:global.color_scheme.options.scheme_5"
+        },
+        {
+          "value": "scheme-6",
+          "label": "t:global.color_scheme.options.scheme_6"
+        }
+      ],
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:global.spacing.header"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:global.spacing.gap.label",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:global.spacing.padding_block_start.label",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:global.spacing.padding_block_end.label",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Carousel"
+    }
+  ]
+}
+{% endschema %}

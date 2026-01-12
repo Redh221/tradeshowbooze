@@ -1,0 +1,433 @@
+.glider,
+.glider-contain {
+  margin: 0 auto;
+  position: relative;
+}
+.glider,
+.glider-track {
+  transform: translateZ(0);
+}
+.glider-dot,
+.glider-next,
+.glider-prev {
+  border: 0;
+  padding: 50px;
+  user-select: none;
+  outline: 0;
+}
+.glider-contain {
+  width: 100%;
+}
+.glider {
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}
+.glider-track {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  z-index: 1;
+}
+.glider.draggable {
+  user-select: none;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.glider.draggable .glider-slide img {
+  user-select: none;
+  pointer-events: none;
+}
+.glider.drag {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+.glider-slide {
+  user-select: none;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  min-width: 150px;
+  margin-right: 20px;
+}
+.glider-slide:last-child {
+  margin-right: 0;
+}
+.glider-slide > :first-child {
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+}
+.glider-slide * {
+  border: none !important;
+}
+.glider-slide > :first-child {
+  border: 1px solid #e5e5e5 !important;
+}
+.glider-slide img {
+  max-width: 100%;
+}
+.glider::-webkit-scrollbar {
+  opacity: 0;
+  height: 0;
+}
+.glider-next,
+.glider-prev {
+  position: absolute;
+  background: transparent;
+  z-index: 2;
+  font-size: 48px;
+  text-decoration: none;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+  opacity: 1;
+  line-height: 1;
+  border: none;
+  transition: all 0.3s ease;
+}
+.glider-next:focus,
+.glider-next:hover,
+.glider-prev:focus,
+.glider-prev:hover {
+  color: #000;
+  transform: translateY(-50%) scale(1.2);
+}
+.glider-prev {
+  left: -90px;
+}
+.glider-next {
+  right: -80px;
+}
+.glider-next.disabled,
+.glider-prev.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.glider-hide {
+  opacity: 0;
+}
+.glider-dots {
+  user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+.glider-dot {
+  display: block;
+  cursor: pointer;
+  color: #ccc;
+  border-radius: 999px;
+  background: #ccc;
+  width: 12px;
+  height: 12px;
+  margin: 7px;
+}
+.glider-dot:focus,
+.glider-dot:hover {
+  background: #ddd;
+}
+.glider-dot.active {
+  background: #a89cc8;
+}
+@media (max-width: 36em) {
+  .glider::-webkit-scrollbar {
+    opacity: 1;
+    -webkit-appearance: none;
+    width: 7px;
+    height: 3px;
+  }
+  .glider::-webkit-scrollbar-thumb {
+    opacity: 1;
+    border-radius: 99px;
+    background-color: rgba(156, 156, 156, 0.25);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.25);
+  }
+
+  .glider-next,
+  .glider-prev {
+    font-size: 36px;
+  }
+}
+
+.glider {
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.glider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Обертка карусели - использует force-full-width для выхода за пределы grid */
+.carousel-wrapper {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Стрелки карусели - добавляем отступы для учета page-margin */
+.carousel-wrapper .glider-prev,
+.carousel-wrapper .glider-next {
+  z-index: var(--layer-heightened, 4);
+}
+
+/* Навигация карусели respects page margins */
+.carousel-wrapper {
+  padding-inline: 0;
+}
+
+.carousel-wrapper .glider {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ===================================
+   ИСПРАВЛЕНИЕ: Стандартизация карточек
+   =================================== */
+
+/* Общая карточка - flexbox для правильного выравнивания */
+.glider-slide .resource-card {
+  font-family: Roboto, sans-serif !important;
+  background-color: #fff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Медиа контейнер - фиксированная высота для изображений */
+.glider-slide .resource-card__media {
+  padding: 23px 23px 0 23px !important;
+  flex-shrink: 0 !important;
+  height: 360px !important; /* Фиксированная высота контейнера изображения */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important; /* ВАЖНО: скрываем все что выходит за границы */
+  position: relative !important; /* Для контроля позиционирования */
+}
+
+/* Изображение внутри медиа контейнера */
+.glider-slide .resource-card__media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* Сохраняем пропорции, вписываем в контейнер */
+  transition: transform 0.3s ease !important; /* Плавный переход для hover */
+}
+
+/* ===================================
+   ИСПРАВЛЕНИЕ HOVER: Контролируемое увеличение
+   =================================== */
+
+/* Hover эффект только на изображение, без выхода за границы */
+.glider-slide .resource-card__media:hover img {
+  transform: scale(1.05) !important; /* Небольшое увеличение на 5% */
+}
+
+/* Альтернатива: если нужен hover на всю карточку */
+.glider-slide .resource-card:hover .resource-card__media img {
+  transform: scale(1.05) !important;
+}
+
+/* Убираем стандартный Shopify hover если он есть */
+.glider-slide .resource-card__media .media img {
+  transition: transform 0.3s ease !important;
+}
+
+.glider-slide .resource-card:hover .resource-card__media .media img,
+.glider-slide .resource-card__media:hover .media img {
+  transform: scale(1.05) !important;
+}
+
+/* Контент карточки - растягивается и прижимает цену вниз */
+.glider-slide .resource-card__content {
+  padding: 23px !important;
+  color: #525456 !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important; /* Распределяем содержимое */
+}
+
+/* Заголовок товара */
+.glider-slide .resource-card__title {
+  font-size: 1.2rem !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  color: #000 !important;
+  margin-bottom: 0.5rem !important;
+  flex-grow: 0 !important;
+}
+
+/* Цена - всегда внизу */
+.glider-slide .resource-card__content .price {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  color: #808285 !important;
+  margin-top: auto !important; /* Прижимаем вниз */
+}
+
+/* Заголовок секции */
+.section-carousel__header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-carousel__header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+.section-carousel__header .shop-all-link {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.section-carousel__header .shop-all-link:hover {
+  text-decoration: underline;
+}
+
+/* ===================================
+   ДОПОЛНИТЕЛЬНЫЕ ИСПРАВЛЕНИЯ HOVER
+   =================================== */
+
+/* Отключаем любые другие трансформации на hover */
+.glider-slide .resource-card *:not(img) {
+  transition: none !important;
+}
+
+/* Убираем возможные конфликтующие стили */
+.glider-slide .resource-card__media > * {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Если используется обертка media */
+.glider-slide .resource-card__media .media {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* ===================================
+   АДАПТИВНОСТЬ
+   =================================== */
+
+@media (max-width: 768px) {
+  .glider-prev {
+    left: -20px;
+  }
+
+  .glider-next {
+    right: -20px;
+  }
+
+  /* Уменьшаем высоту изображений на планшетах */
+  .glider-slide .resource-card__media {
+    height: 280px !important;
+    padding: 16px 16px 0 16px !important;
+  }
+
+  .glider-slide .resource-card__content {
+    padding: 16px !important;
+  }
+
+  /* Меньший hover эффект на планшетах */
+  .glider-slide .resource-card:hover .resource-card__media img,
+  .glider-slide .resource-card__media:hover img {
+    transform: scale(1.03) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-wrapper {
+    padding-inline: var(--page-margin, 16px);
+  }
+
+  .glider-prev {
+    left: 0;
+  }
+
+  .glider-next {
+    right: 0;
+  }
+
+  /* Еще меньше на мобильных */
+  .glider-slide .resource-card__media {
+    height: 200px !important;
+    padding: 8px 8px 0 8px !important;
+  }
+
+  .glider-slide .resource-card__content {
+    padding: 8px !important;
+  }
+
+  .glider-slide .resource-card__title {
+    font-size: 1rem !important;
+  }
+
+  .glider-slide .resource-card__content .price {
+    font-size: 0.9rem !important;
+  }
+
+  /* Отключаем hover на мобильных */
+  .glider-slide .resource-card:hover .resource-card__media img,
+  .glider-slide .resource-card__media:hover img {
+    transform: none !important;
+  }
+}
+
+/* ===================================
+   ДОПОЛНИТЕЛЬНО: Убираем возможные конфликты
+   =================================== */
+
+/* Убираем дополнительные отступы у вложенных элементов */
+.glider-slide .resource-card__media > * {
+  margin: 0 !important;
+}
+
+/* Убираем минимальную высоту, если она задана */
+.glider-slide .resource-card {
+  min-height: unset !important;
+}
+
+/* Предотвращаем переполнение при hover */
+.glider-slide {
+  overflow: visible !important; /* Разрешаем небольшой выход за границы для тени */
+}
+
+/* Но контролируем медиа контейнер */
+.glider-slide .resource-card__media {
+  overflow: hidden !important; /* Строго контролируем границы изображения */
+}
+
+/* Новый внешний контейнер для правильного позиционирования стрелок */
+.carousel-navigation-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .carousel-navigation-wrapper .glider-prev {
+    left: 5px !important;
+  }
+
+  .carousel-navigation-wrapper .glider-next {
+    right: 5px !important;
+  }
+}

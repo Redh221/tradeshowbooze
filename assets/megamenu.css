@@ -1,0 +1,23 @@
+.mega-menu__show-all-wrapper {
+  margin-top: 1.5rem;
+  grid-column: 1 / -1; /* занимает всю строку грида */
+  justify-self: end; /* прижимаем вправо */
+}
+
+.mega-menu__show-all-button {
+  display: inline-block;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #167ba6;
+  text-decoration: none; /* <- убирает подчёркивание */
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.mega-menu__show-all-button:hover {
+  opacity: 0.75;
+  text-decoration: none; /* <- убирает подчёркивание на ховере */
+}
