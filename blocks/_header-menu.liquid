@@ -1,4 +1,3 @@
-
 {%- doc -%}
   Renders a header menu block.
 
@@ -249,15 +248,17 @@
     content: '';
     position: absolute;
     top: calc(100% - 1px + var(--border-bottom-width));
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1130px; /* Как в примере */
     width: 100%;
+    margin-top: 1px;
     height: var(--submenu-height);
     background-color: var(--color-background);
     box-shadow: var(--shadow-popover);
-    clip-path: inset(0.5px 0 -100px 0); /* stylelint-disable-line */
+    clip-path: inset(0.5px 0 -100px 0);
     opacity: var(--submenu-opacity, 1);
-    transition: height var(--submenu-animation-speed) var(--ease-out-cubic),
-      opacity var(--animation-speed-slow) var(--ease-out-cubic) var(--animation-speed-fast);
+    transition: all 0.2s ease-in-out;
     z-index: calc(var(--layer-header-menu) - 1);
   }
 
@@ -286,13 +287,18 @@
     visibility: hidden;
     background-color: var(--color-background);
     position: absolute;
+    max-width: 1130px; /* Как в примере */
     width: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Начальное положение */
     top: calc(100% - 1px + var(--border-bottom-width));
+    margin-top: 1px; /* Как в примере */
     z-index: var(--layer-header-menu);
     padding-inline: var(--padding-inline);
-    clip-path: rect(0 100% var(--submenu-height) 0); /* stylelint-disable-line */
-    transition: clip-path var(--submenu-animation-speed) var(--ease-out-cubic);
+    max-height: 75vh; /* Как в примере */
+    overflow-y: auto; /* Как в примере */
+    clip-path: rect(0 100% var(--submenu-height) 0);
+    transition: all 0.2s ease-in-out; /* Как в примере */
   }
 
   /* Show the submenus on hover */
